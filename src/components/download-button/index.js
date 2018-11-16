@@ -1,2 +1,2 @@
-import DownloadButton from './download-button.jsx';
+import DownloadButton from './download-button.tsx';
 export default DownloadButton;

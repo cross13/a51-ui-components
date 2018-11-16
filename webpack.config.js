@@ -10,9 +10,26 @@ const hwp = new HtmlWebPackPlugin({
 const clean = new CleanWebpackPlugin(['dist']);
 
 module.exports = {
-  entry: path.join(__dirname, 'src/index.jsx'),
+  entry: path.join(__dirname, 'src/index.tsx'),
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].[hash].bundle.js',
+    chunkFilename: '[name].[hash].bundle.js',
+    publicPath: '/',
+  },
+  // Enable sourcemaps for debugging webpack's output.
+  devtool: 'source-map',
+  resolve: {
+    // Add '.ts' and '.tsx' as resolvable extensions.
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
+  },
   module: {
     rules: [
+      // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+      { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+
+      // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
       {
         test: /\.(js|jsx)$/,
         loader: 'babel-loader',
@@ -33,12 +50,6 @@ module.exports = {
         }],
       }
     ]
-  },
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[hash].bundle.js',
-    chunkFilename: '[name].[hash].bundle.js',
-    publicPath: '/',
   },
   optimization: {
     splitChunks: {

@@ -1,27 +1,26 @@
-import React from "react";
+import * as React from 'react';
 import { Button } from 'antd';
 import noop from 'lodash.noop';
 
-export interface Button51Props { type: string; shape: string; icon: string; };
+export interface Button51Props {
+  type?: "ghost" | "default" | "primary" | "dashed" | "danger" | undefined;
+  shape?: "circle" | "circle-outline" | undefined;
+  icon?: string;
+  onClickHandler?: any;
+};
 
-// 'Button51Props' describes the shape of props.
-// State is never set so we use the '{}' type.
-export class Hello extends React.Component<Button51Props, {}> {
-    render() {
-        return <h1>Hello from {this.props.compiler} and {this.props.framework}!</h1>;
-    }
-}
-
-export const Button51 = ({ type, shape, icon, onClickHandler }) =>
-  <Button type={type} shape={shape} icon={icon} onClick={onClickHandler}/>;
-
-Button51.defaultProps = {
-  type: 'primary',
+export class Button51 extends React.Component<Button51Props, {}> {
+  public static defaultProps: Partial<Button51Props> = {
+    type: 'primary',
   shape: 'circle',
   icon: 'download',
   onClickHandler: noop,
-};
+  }
 
-// https://medium.com/@martin_hotell/react-typescript-and-defaultprops-dilemma-ca7f81c661c7
+  render() {
+    const { type, shape, icon, onClickHandler } = this.props;
+    return <Button type={type} shape={shape} icon={icon} onClick={onClickHandler}/>;
+  }
+}
 
 export default Button51;

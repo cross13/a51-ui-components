@@ -1,6 +1,7 @@
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const DashboardPlugin = require('webpack-dashboard/plugin');
 
 const hwp = new HtmlWebPackPlugin({
   template: path.join(__dirname, 'src/index.html'),
@@ -27,9 +28,6 @@ module.exports = {
     rules: [
       // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
       { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
-
-      // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
       {
         test: /\.(js|jsx)$/,
         loader: 'babel-loader',
@@ -48,7 +46,9 @@ module.exports = {
             ],
           },
         }],
-      }
+      },
+      // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
     ]
   },
   optimization: {
@@ -65,6 +65,7 @@ module.exports = {
   },
   plugins: [
     clean,
+    new DashboardPlugin(),
     hwp
   ]
 };

@@ -7,7 +7,7 @@
     "start": "webpack-dashboard -- webpack-dev-server  --mode development --open --hot",
     "build": "webpack --mode production",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "deploy-storybook": "storybook-to-ghpages",
+    "build-storybook": "build-storybook -c .storybook",
     "test": "jest --coverage"
   },
   "author": "",

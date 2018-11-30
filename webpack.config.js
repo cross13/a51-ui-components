@@ -1,6 +1,7 @@
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+var DashboardPlugin = require('webpack-dashboard/plugin');
 
 const hwp = new HtmlWebPackPlugin({
   template: path.join(__dirname, 'src/index.html'),
@@ -54,6 +55,7 @@ module.exports = {
   },
   plugins: [
     clean,
-    hwp
+    hwp,
+    new DashboardPlugin()
   ]
 };

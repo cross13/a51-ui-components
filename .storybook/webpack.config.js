@@ -40,6 +40,8 @@ module.exports = (baseConfig, env, config) => {
         }]
     });
 
+    config.plugins.push(new TSDocgenPlugin());
+
     baseConfig.resolve.extensions.push('.ts', '.tsx');
 
     return baseConfig;

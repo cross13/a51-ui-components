@@ -1,5 +1,4 @@
 const path = require('path');
-const TSDocgenPlugin = require('react-docgen-typescript-webpack-plugin');
 const tsImportPluginFactory = require('ts-import-plugin')
 
 module.exports = (baseConfig, env, config) => {
@@ -7,17 +6,24 @@ module.exports = (baseConfig, env, config) => {
     baseConfig.module.rules.push({
         test: /\.(ts|tsx)$/,
         include: path.resolve(__dirname, "../src"),
-        options: {
-            getCustomTransformers: () => ({
-                before: [ tsImportPluginFactory({
-                    libraryName: 'antd',
-                    libraryDirectory: 'lib',
-                    style: true
-                })]
-            }),
-        },
-        exclude: /node_modules/,
-        loader: 'awesome-typescript-loader'
+        use: [
+            {
+                options: {
+                    getCustomTransformers: () => ({
+                        before: [ tsImportPluginFactory({
+                            libraryName: 'antd',
+                            libraryDirectory: 'lib',
+                            style: true
+                        })]
+                    }),
+                },
+                loader: require.resolve("awesome-typescript-loader")
+            },
+            {
+                loader: require.resolve("react-docgen-typescript-loader")
+            }
+        ],
+        exclude: /node_modules/
     });
 
     baseConfig.module.rules.push({
@@ -39,8 +45,6 @@ module.exports = (baseConfig, env, config) => {
             }
         }]
     });
-
-    config.plugins.push(new TSDocgenPlugin());
 
     baseConfig.resolve.extensions.push('.ts', '.tsx');
 

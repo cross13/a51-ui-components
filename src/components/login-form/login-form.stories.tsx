@@ -17,6 +17,12 @@ storiesOf('Login Form', module)
         passwordPlaceholder={'Password'}
         username={'demo@demo.com'}
         password={'123456'}
+        errors={
+          {
+            username: 'Please complete the username!',
+            password: 'Please complete the password!'
+          }
+        }
         onSubmit={action('submit with')}/>
     </Card>
 )));

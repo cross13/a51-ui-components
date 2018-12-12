@@ -13,6 +13,10 @@ export interface LoginForm51Props {
     form: any,
     username: string,
     password: string,
+    errors: {
+      username: string,
+      password: string
+    },
     usernamePlaceholder: string,
     passwordPlaceholder: string,
     forgotPassword?: string,
@@ -34,13 +38,13 @@ class LoginForm51 extends React.Component<LoginForm51Props, {}> {
   }
 
   render() {
-    const { forgotPassword, usernamePlaceholder, passwordPlaceholder, registerLink } = this.props;
+    const { forgotPassword, usernamePlaceholder, passwordPlaceholder, registerLink, errors } = this.props;
     const { getFieldDecorator } = this.props.form;
     return (
       <Form onSubmit={this.handleSubmit} className="LoginForm-Container">
         <FormItem>
           {getFieldDecorator('username', {
-            rules: [{ required: true, message: 'Please input your username!' }],
+            rules: [{ required: true, message: errors.username }],
             initialValue: this.props.username
           })(
             <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder={usernamePlaceholder} />
@@ -48,7 +52,7 @@ class LoginForm51 extends React.Component<LoginForm51Props, {}> {
         </FormItem>
         <FormItem>
           {getFieldDecorator('password', {
-            rules: [{ required: true, message: 'Please input your Password!' }],
+            rules: [{ required: true, message: errors.password }],
             initialValue: this.props.password
           })(
             <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder={passwordPlaceholder} />

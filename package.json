@@ -62,6 +62,7 @@
     "@types/react": "^16.7.6",
     "@types/react-dom": "^16.0.9",
     "antd": "^3.10.7",
+    "classnames": "^2.2.6",
     "lodash.noop": "^3.0.1",
     "react": "^16.6.3",
     "react-dom": "^16.6.3"

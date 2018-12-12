@@ -1,0 +1,23 @@
+.LoginForm {
+    &-Container {
+        margin: 10px;
+        padding: 30px 20px 0px;
+        border: 1px solid #ebedf0;
+        max-width: 340px;
+        border-radius: 10px;
+    }
+
+    &-Forgot {
+        float: right;
+    }
+
+    &-Button {
+        width: 100%;
+    }
+}
+
+.LoginWrapper {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}

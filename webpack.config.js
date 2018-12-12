@@ -2,6 +2,7 @@ const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 var DashboardPlugin = require('webpack-dashboard/plugin');
+const tsImportPluginFactory = require('ts-import-plugin');
 
 const hwp = new HtmlWebPackPlugin({
   template: path.join(__dirname, 'src/index.html'),
@@ -11,7 +12,7 @@ const hwp = new HtmlWebPackPlugin({
 const clean = new CleanWebpackPlugin(['dist']);
 
 module.exports = {
-  entry: path.join(__dirname, 'src/index.jsx'),
+  entry: path.join(__dirname, 'src/pkg.jsx'),
   module: {
     rules: [
       {

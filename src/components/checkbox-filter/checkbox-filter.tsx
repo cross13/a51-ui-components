@@ -46,7 +46,7 @@ export class CheckboxFilter51 extends React.Component<CheckboxFilter51Props, {}>
                             onChange={(event) => this.onChange(event, option)} >
                                 {option.label}
                         </Checkbox>
-                </List.Item>)}
+            </List.Item>)}
             />
         </div>
     }

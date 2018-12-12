@@ -1,0 +1,13 @@
+src/
+docs/
+jest/
+.awcache/
+.storybook/
+build/
+coverage/
+node_modules/
+jest.config.js
+tsconfig.json
+webpack.config.js
+_config.yml
+.babelrc

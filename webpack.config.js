@@ -1,24 +1,39 @@
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const HtmlWebPackPlugin = require("html-webpack-plugin");
-var DashboardPlugin = require('webpack-dashboard/plugin');
+const tsImportPluginFactory = require('ts-import-plugin');
+var nodeExternals = require('webpack-node-externals');
 
-const hwp = new HtmlWebPackPlugin({
-  template: path.join(__dirname, 'src/index.html'),
-  filename: 'index.html'
-});
-
-const clean = new CleanWebpackPlugin(['dist']);
+const clean = new CleanWebpackPlugin(['build']);
 
 module.exports = {
-  entry: path.join(__dirname, 'src/index.jsx'),
+  entry: [
+    path.join(__dirname, 'src/index.tsx')
+  ],
+  externals: [nodeExternals()],
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        loader: 'babel-loader',
-        exclude: /(node_modules)/,
-      }, {
+        test: /\.ts|\.tsx$/,
+        exclude: /node_modules/,
+        use: [
+            'babel-loader',
+            {
+                loader: 'awesome-typescript-loader',
+                options: {
+                    useCache: true,
+                    useBabel: false, // !important!
+                    getCustomTransformers: () => ({
+                        before: [tsImportPluginFactory({
+                            libraryName: 'antd',
+                            libraryDirectory: 'lib',
+                            style: true,
+                        })],
+                    }),
+                },
+            },
+        ],
+      },
+      {
         test: /\.(s*)css$/,
         use: [{
           loader: 'style-loader', // creates style nodes from JS strings
@@ -32,30 +47,31 @@ module.exports = {
             ],
           },
         }],
+      },
+      {
+        test: /\.less$/,
+        use: [{
+            loader: 'style-loader'
+        }, {
+            loader: 'css-loader'
+        }, {
+            loader: 'less-loader',
+            options: {
+                javascriptEnabled: true
+            }
+        }]
       }
     ]
   },
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[hash].bundle.js',
-    chunkFilename: '[name].[hash].bundle.js',
-    publicPath: '/',
+  resolve: {
+      extensions: ['.ts', '.tsx', '.scss']
   },
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /node_modules/,
-          chunks: 'initial',
-          name: 'vendor',
-          enforce: true
-        },
-      }
-    }
+  output: {
+    path: path.resolve(__dirname, './build/lib'),
+    filename: 'index.js',
+    libraryTarget: 'commonjs2'
   },
   plugins: [
-    clean,
-    hwp,
-    new DashboardPlugin()
+    clean
   ]
 };

@@ -1,5 +1,5 @@
 const path = require('path');
-const tsImportPluginFactory = require('ts-import-plugin')
+const tsImportPluginFactory = require('ts-import-plugin');
 
 module.exports = (baseConfig, env, config) => {
 

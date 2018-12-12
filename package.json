@@ -1,10 +1,10 @@
 {
   "name": "a51-ui",
-  "version": "1.0.0",
+  "version": "1.0.7",
   "description": "UI Components",
-  "main": "index.js",
+  "main": "build/lib/index.js",
+  "typings": "build/lib/index.d.ts",
   "scripts": {
-    "start": "webpack-dashboard -- webpack-dev-server  --mode development --open --hot",
     "build": "webpack --mode production",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "build-storybook": "build-storybook -c .storybook",
@@ -41,7 +41,9 @@
     "jest": "^23.6.0",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
+    "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.10.0",
+    "parcel-bundler": "^1.10.3",
     "react-docgen-typescript-loader": "^3.0.0",
     "react-docgen-typescript-webpack-plugin": "^1.1.0",
     "react-test-renderer": "^16.6.3",
@@ -69,6 +71,7 @@
   },
   "peerDependency": {
     "react": "^16.6.3",
-    "react-dom": "^16.6.3"
+    "react-dom": "^16.6.3",
+    "antd": "^3.10.7"
   }
 }

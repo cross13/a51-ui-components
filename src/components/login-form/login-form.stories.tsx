@@ -13,7 +13,7 @@ storiesOf('Login Form', module)
   .add('Default', withInfo({ inline: true })(() => (
     <Card className="LoginWrapper">
       <WrappedNormalLoginForm
-        usernamePlaceholder={'Useranme or Email'}
+        usernamePlaceholder={'Username or Email'}
         passwordPlaceholder={'Password'}
         username={'demo@demo.com'}
         password={'123456'}

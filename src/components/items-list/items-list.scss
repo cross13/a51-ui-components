@@ -1,0 +1,24 @@
+.ItemsList {
+    &-Container {
+        width: 800px;
+        margin: 0 auto;
+    }
+
+    &-Header {
+        height: 45px;
+        display: flex;
+        align-items: center;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    &-Footer {
+        font-size: 22px;
+    }
+
+    &-item {
+        .icon {
+            font-size: 30px;
+        }
+    }
+}

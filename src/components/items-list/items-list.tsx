@@ -12,6 +12,7 @@ export interface iconProps {
     color?: string;
     type: string | undefined;
     className?: string;
+    theme?: "filled" | "outlined" | "twoTone" | undefined;
 }
 
 export interface ItemsListProps {
@@ -28,7 +29,7 @@ export interface ItemsListProps {
 const defaultProps = {
     size: 'large',
     iconType:{
-        size: 20
+        size: 20,
     }
 };
 
@@ -64,7 +65,7 @@ export class ItemsList extends React.Component<ItemsListProps, {}> {
                             <Icon
                                 className={iconType.className}
                                 type={iconType.type}
-                                theme="twoTone"
+                                theme={iconType.theme}
                                 twoToneColor={iconType.color} />}
                         </a>
                     </List.Item>

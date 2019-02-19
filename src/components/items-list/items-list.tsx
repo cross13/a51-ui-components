@@ -41,9 +41,9 @@ export class ItemsList extends React.Component<ItemsListProps, {}> {
 
     static  defaultProps = defaultProps;
 
-    onClick(event: any) {
+    onClick(event: any, item: dataItems) {
         event.preventDefault();
-        this.props.onClickItem && this.props.onClickItem();
+        this.props.onClickItem && this.props.onClickItem(item);
     }
 
     render() {
@@ -61,7 +61,7 @@ export class ItemsList extends React.Component<ItemsListProps, {}> {
                             title={item.title}
                             description={item.description}
                         />
-                        <a href="#" onClick={e => this.onClick(e)}>{iconType &&
+                        <a href="#" onClick={e => this.onClick(e, item)}>{iconType &&
                             <Icon
                                 className={iconType.className}
                                 type={iconType.type}

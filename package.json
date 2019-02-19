@@ -1,6 +1,6 @@
 {
   "name": "a51-ui",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "UI Components",
   "main": "build/lib/index.js",
   "typings": "build/lib/index.d.ts",
